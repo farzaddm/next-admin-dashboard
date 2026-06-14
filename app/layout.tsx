@@ -39,7 +39,7 @@ export default async function RootLayout({children,}: Readonly<{ children: React
         <AppSidebar/>
         <main className="w-full">
           <Navbar/>
-          <div>
+          <div className="p-4">
             {children}
           </div>
         </main>
