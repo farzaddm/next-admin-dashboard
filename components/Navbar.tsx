@@ -8,16 +8,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {Button} from "@/components/ui/button";
 import {useTheme} from "next-themes";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 const Navbar = () => {
-  const { theme, setTheme } = useTheme()
+  const { setTheme } = useTheme()
   return (
     <nav>
-      navbar
-      <div className="flex flex-row justify-between">
-        dashboard
-        <div className="flex flex-row gap-4 mx-3">
+      <div className="flex flex-row justify-between p-3">
+        <SidebarTrigger />
 
+        <div className="flex flex-row gap-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon">
