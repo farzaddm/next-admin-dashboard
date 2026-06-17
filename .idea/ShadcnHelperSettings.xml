@@ -2694,6 +2694,54 @@
         <option name="homepage" value="https://zippystarter.com" />
         <option name="urlTemplate" value="https://zippystarter.com/r/{name}.json" />
       </RegistryConfigState>
+      <RegistryConfigState>
+        <option name="id" value="central-contentbit" />
+        <option name="name" value="Contentbit" />
+        <option name="namespace" value="@contentbit" />
+        <option name="baseUrl" value="https://contentbit.dev/r" />
+        <option name="stylePath" value="/{name}.json" />
+        <option name="type" value="community" />
+        <option name="enabled" value="false" />
+        <option name="description" value="React components that render Content Blocks: plain Markdown with schema-validated directive blocks. Built for content written by humans, CMSes, and LLMs." />
+        <option name="homepage" value="https://contentbit.dev" />
+        <option name="urlTemplate" value="https://contentbit.dev/r/{name}.json" />
+      </RegistryConfigState>
+      <RegistryConfigState>
+        <option name="id" value="central-shadcn-ui-blocks" />
+        <option name="name" value="Shadcn-ui-blocks" />
+        <option name="namespace" value="@shadcn-ui-blocks" />
+        <option name="baseUrl" value="https://www.shadcn-ui-blocks.com/r" />
+        <option name="stylePath" value="/{name}.json" />
+        <option name="type" value="community" />
+        <option name="enabled" value="false" />
+        <option name="description" value="Shadcn blocks across standard collections and handcrafted premium collections, plus a beautiful templates. Start free, then unlock more with Pro." />
+        <option name="homepage" value="https://www.shadcn-ui-blocks.com" />
+        <option name="urlTemplate" value="https://www.shadcn-ui-blocks.com/r/{name}.json" />
+      </RegistryConfigState>
+      <RegistryConfigState>
+        <option name="id" value="central-heatmap" />
+        <option name="name" value="Heatmap" />
+        <option name="namespace" value="@heatmap" />
+        <option name="baseUrl" value="https://shadcn-heatmap.pages.dev/r" />
+        <option name="stylePath" value="/{name}.json" />
+        <option name="type" value="community" />
+        <option name="enabled" value="false" />
+        <option name="description" value="Beautiful, accessible heatmap components for React: GitHub-style calendar, weekday x hour matrix, date x hour, and status timeline. Built with shadcn/ui conventions." />
+        <option name="homepage" value="https://shadcn-heatmap.pages.dev" />
+        <option name="urlTemplate" value="https://shadcn-heatmap.pages.dev/r/{name}.json" />
+      </RegistryConfigState>
+      <RegistryConfigState>
+        <option name="id" value="central-kaui" />
+        <option name="name" value="Kaui" />
+        <option name="namespace" value="@kaui" />
+        <option name="baseUrl" value="https://kaui-shadcn-registry.vercel.app/r" />
+        <option name="stylePath" value="/{name}.json" />
+        <option name="type" value="community" />
+        <option name="enabled" value="false" />
+        <option name="description" value="Personal well crafted components for Shadcn ui" />
+        <option name="homepage" value="https://kaui-shadcn-registry.vercel.app" />
+        <option name="urlTemplate" value="https://kaui-shadcn-registry.vercel.app/r/{name}.json" />
+      </RegistryConfigState>
     </registryConfigs>
   </component>
 </project>
