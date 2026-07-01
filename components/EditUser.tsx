@@ -1,7 +1,9 @@
 "use client";
 
-import { Form, useField, useForm } from "@formisch/react";
-import * as v from "valibot";
+import * as React from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -17,41 +19,48 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 
-const EditUserSchema = v.object({
-  username: v.pipe(
-    v.string(),
-    v.minLength(3, "Username must be at least 3 characters."),
-    v.maxLength(30, "Username must be at most 30 characters.")
-  ),
-  fullname: v.pipe(
-    v.string(),
-    v.minLength(2, "Full name must be at least 2 characters.")
-  ),
-  email: v.pipe(
-    v.string(),
-    v.email("Please enter a valid email address.")
-  ),
-  location: v.pipe(
-    v.string(),
-    v.minLength(2, "Location is required.")
-  ),
+const EditUserSchema = z.object({
+  username: z
+    .string()
+    .min(3, "Username must be at least 3 characters.")
+    .max(30, "Username must be at most 30 characters."),
+  fullname: z
+    .string()
+    .min(2, "Full name must be at least 2 characters."),
+  email: z
+    .string()
+    .email("Please enter a valid email address."),
+  location: z
+    .string()
+    .min(2, "Location is required."),
 });
 
-const EditUser = () => {
-  const form = useForm({
-    schema: EditUserSchema,
-    initialInput: {
-      username: "",
-      fullname: "",
-      email: "",
-      location: "",
+type EditUserFormValues = z.infer<typeof EditUserSchema>;
+
+interface EditUserProps {
+  initialData?: Partial<EditUserFormValues>;
+  onSubmit?: (data: EditUserFormValues) => void;
+}
+
+const EditUser = ({ initialData, onSubmit }: EditUserProps) => {
+  const form = useForm<EditUserFormValues>({
+    resolver: zodResolver(EditUserSchema),
+    defaultValues: {
+      username: initialData?.username || "",
+      fullname: initialData?.fullname || "",
+      email: initialData?.email || "",
+      location: initialData?.location || "",
     },
   });
 
-  const usernameField = useField(form, ["username"]);
-  const fullnameField = useField(form, ["fullname"]);
-  const emailField = useField(form, ["email"]);
-  const locationField = useField(form, ["location"]);
+  const handleSubmit = (data: EditUserFormValues) => {
+    if (onSubmit) {
+      onSubmit(data);
+    } else {
+      // Default handler if no onSubmit prop provided
+      console.log("Form submitted:", data);
+    }
+  };
 
   return (
     <div className="p-6">
@@ -62,70 +71,111 @@ const EditUser = () => {
         </SheetDescription>
       </SheetHeader>
 
-      <Form of={form} id="edit-user-form" onSubmit={() => {}}>
+      <form id="edit-user-form" onSubmit={form.handleSubmit(handleSubmit)}>
         <FieldGroup className="mt-6">
-          <Field data-invalid={usernameField.errors !== null}>
-            <FieldLabel htmlFor="username">Username</FieldLabel>
-            <Input
-              {...usernameField.props}
-              id="username"
-              aria-label="Username"
-              value={(usernameField.input as string) ?? ""}
-              aria-invalid={usernameField.errors !== null}
-            />
-            {usernameField.errors && (
-              <FieldError errors={usernameField.errors.map((message: string) => ({ message }))} />
+          <Controller
+            name="username"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor="edit-user-username">
+                  Username
+                </FieldLabel>
+                <Input
+                  {...field}
+                  id="edit-user-username"
+                  aria-label="Username"
+                  placeholder="Enter username"
+                  aria-invalid={fieldState.invalid}
+                />
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
             )}
-          </Field>
+          />
 
-          <Field data-invalid={fullnameField.errors !== null}>
-            <FieldLabel htmlFor="fullname">Full Name</FieldLabel>
-            <Input
-              {...fullnameField.props}
-              id="fullname"
-              aria-label="Full Name"
-              value={(fullnameField.input as string) ?? ""}
-              aria-invalid={fullnameField.errors !== null}
-            />
-            {fullnameField.errors && (
-              <FieldError errors={fullnameField.errors.map((message: string) => ({ message }))} />
+          <Controller
+            name="fullname"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor="edit-user-fullname">
+                  Full Name
+                </FieldLabel>
+                <Input
+                  {...field}
+                  id="edit-user-fullname"
+                  aria-label="Full Name"
+                  placeholder="Enter full name"
+                  aria-invalid={fieldState.invalid}
+                />
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
             )}
-          </Field>
+          />
 
-          <Field data-invalid={emailField.errors !== null}>
-            <FieldLabel htmlFor="email">Email</FieldLabel>
-            <Input
-              {...emailField.props}
-              id="email"
-              aria-label="Email"
-              type="email"
-              value={(emailField.input as string) ?? ""}
-              aria-invalid={emailField.errors !== null}
-            />
-            {emailField.errors && (
-              <FieldError errors={emailField.errors.map((message: string) => ({ message }))} />
+          <Controller
+            name="email"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor="edit-user-email">
+                  Email
+                </FieldLabel>
+                <Input
+                  {...field}
+                  id="edit-user-email"
+                  aria-label="Email"
+                  type="email"
+                  placeholder="Enter email address"
+                  aria-invalid={fieldState.invalid}
+                />
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
             )}
-          </Field>
+          />
 
-          <Field data-invalid={locationField.errors !== null}>
-            <FieldLabel htmlFor="location">Location</FieldLabel>
-            <Input
-              {...locationField.props}
-              id="location"
-              aria-label="Location"
-              value={(locationField.input as string) ?? ""}
-              aria-invalid={locationField.errors !== null}
-            />
-            {locationField.errors && (
-              <FieldError errors={locationField.errors.map((message: string) => ({ message }))} />
+          <Controller
+            name="location"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <Field data-invalid={fieldState.invalid}>
+                <FieldLabel htmlFor="edit-user-location">
+                  Location
+                </FieldLabel>
+                <Input
+                  {...field}
+                  id="edit-user-location"
+                  aria-label="Location"
+                  placeholder="Enter location"
+                  aria-invalid={fieldState.invalid}
+                />
+                {fieldState.invalid && (
+                  <FieldError errors={[fieldState.error]} />
+                )}
+              </Field>
             )}
-          </Field>
+          />
         </FieldGroup>
 
-        <div className="mt-6 flex justify-end">
-          <Button type="submit">Save Changes</Button>
+        <div className="mt-6 flex justify-end gap-2">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => form.reset()}
+          >
+            Reset
+          </Button>
+          <Button type="submit">
+            Save Changes
+          </Button>
         </div>
-      </Form>
+      </form>
     </div>
   );
 };

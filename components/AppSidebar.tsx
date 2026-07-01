@@ -1,18 +1,16 @@
 import {
   BarChart2, Bell,
-  Calendar,
   ChevronDown,
-  ChevronUp, FileText,
+  ChevronUp, CreditCard, FileText,
   FolderKanban,
   Home,
   Inbox,
   Layers,
   Plus,
-  Projector,
   Rocket,
   Search,
   Settings, ShieldCheck, Tag,
-  User2, Users
+  User2, Contact, Users
 } from "lucide-react";
 import {
   Sidebar,
@@ -46,9 +44,14 @@ const items = [
     icon: Inbox
   },
   {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar
+    title: "Payments",
+    url: "/payments",
+    icon: CreditCard
+  },
+  {
+    title: "User Details",
+    url: "/users/test",
+    icon: Contact
   },
   {
     title: "Search",
