@@ -53,7 +53,5 @@ A clean, responsive admin dashboard for managing users and payments with a moder
 ### Payments Table
 ![payments.png](public/screenshots/payments.png)
 
-## 🎥 Video Demo
-<video src="public/demo/demo.mp4" width="800" controls>
-  Your browser does not support the video tag.
-</video>
+## 🎥 Demo
+<img src="public/demo/mobile.gif" alt="Admin Dashboard Demo" width="300" height="auto">
