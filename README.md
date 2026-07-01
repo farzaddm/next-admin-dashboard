@@ -1,6 +1,5 @@
 # 🚀 Admin Dashboard
 
-A modern admin dashboard built with Next.js 16, Shadcn UI, and Tailwind CSS.
 A clean, responsive admin dashboard for managing users and payments with a modern UI/UX design. Built as a practice project to demonstrate the power of Shadcn UI components with Next.js.
 
 ## ✨ Features
