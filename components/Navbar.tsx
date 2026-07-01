@@ -13,8 +13,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 const Navbar = () => {
   const { setTheme } = useTheme()
   return (
-    <nav>
-      <div className="flex flex-row justify-between p-3">
+      <div className="flex flex-row justify-between p-3 sticky top-0 bg-background z-10">
         <SidebarTrigger />
 
         <div className="flex flex-row gap-4">
@@ -56,8 +55,6 @@ const Navbar = () => {
           </DropdownMenu>
         </div>
       </div>
-
-    </nav>
   )
 }
 
